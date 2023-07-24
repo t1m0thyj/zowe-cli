@@ -17,17 +17,34 @@ module.exports = {
         // }
     ],
     plugins: [
-        "@octorelease/changelog",
+        ["@octorelease/changelog", {
+            "displayNames": {
+                "cli": "Zowe CLI",
+                "core": "Core SDK",
+                "zosconsole": "z/OS Console SDK",
+                "zosfiles": "z/OS Files SDK",
+                "zosjobs": "z/OS Jobs SDK",
+                "zoslogs": "z/OS Logs SDK",
+                "provisioning": "Provisioning SDK",
+                "zostso": "z/OS TSO SDK",
+                "zosuss": "z/OS USS SDK",
+                "workflows": "Workflows SDK",
+                "zosmf": "z/OSMF SDK",
+                "cli-test-utils": "CLI Test Utils"
+            }
+        }],
         ["@octorelease/lerna", {
             aliasTags: {
                 // Note: Remove "next" tag here when the "next" branch is uncommented above
                 "latest": ["zowe-v2-lts", "next"]
             },
+            npmPublish: false,
             pruneShrinkwrap: ["@zowe/cli"],
             smokeTest: true
         }],
         ["@octorelease/github", {
-            checkPrLabels: true
+            checkPrLabels: true,
+            publishRelease: true
         }],
         "@octorelease/git"
     ]
