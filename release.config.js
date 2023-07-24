@@ -38,7 +38,8 @@ module.exports = {
                 // Note: Remove "next" tag here when the "next" branch is uncommented above
                 "latest": ["zowe-v2-lts", "next"]
             },
-            pruneShrinkwrap: ["@zowe/cli"],
+            npmPublish: false,
+            // pruneShrinkwrap: ["@zowe/cli"],
             smokeTest: true
         }],
         ["@octorelease/github", {
