@@ -179,7 +179,6 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        persist-credentials: false
         ref: ${{ github.ref }}
 
     # Use Node 16 until npm@9 bundled with Node 18 becomes more stable
