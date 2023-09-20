@@ -1,0 +1,86 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /__tests__/__packages__/cli-test-utils
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/cli
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/core
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/provisioning
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/secrets
+    schedule:
+      interval: daily
+
+  - package-ecosystem: cargo
+    directory: /packages/secrets/src/keyring
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/workflows
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/zosconsole
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/zosfiles
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/zosjobs
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/zoslogs
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/zosmf
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/zostso
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/zosuss
+    schedule:
+      interval: daily
+
+  - package-ecosystem: cargo
+    directory: /zowex
+    schedule:
+      interval: daily
