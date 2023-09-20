@@ -45,11 +45,16 @@ jobs:
       cancel-in-progress: true
 
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@8ca2b8b2ece13480cda6dacd3511b49857a23c09 # v2.5.1
+      with:
+        egress-policy: audit
+
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
       with:
         node-version: ${{ matrix.node-version }}
         check-latest: true
@@ -72,7 +77,7 @@ jobs:
 
     - name: Update Dependencies
       id: npm-update
-      uses: zowe-actions/octorelease/script@v1
+      uses: zowe-actions/octorelease/script@2e00d19f7c4512fd62103d21ab9f1eae441a341b # v1.0.8
       with:
         script: npmUpdate
 
@@ -83,7 +88,7 @@ jobs:
     - name: Install Rust toolchain
       id: install-rust
       if: github.event.inputs.test-type == 'binary' || github.event_name == 'push'
-      uses: dtolnay/rust-toolchain@stable
+      uses: dtolnay/rust-toolchain@d76c2a93c593483c9892fd8d2538734f73ed8588 # stable
 
     - name: Checkout Imperative
       id: checkout-imperative
@@ -116,7 +121,7 @@ jobs:
     - name: Archive Binary
       if: github.event.inputs.test-type == 'binary' || github.event_name == 'push'
       id: upload-binary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3.1.3
       with:
         name: zowe-${{ matrix.os }}.tgz
         path: zowe.tgz
@@ -141,7 +146,7 @@ jobs:
     - name: Unlock Keyring
       id: unlock-keyring
       if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
-      uses: t1m0thyj/unlock-keyring@v1
+      uses: t1m0thyj/unlock-keyring@25dd6c4df6eee2b21b56fd5efc8edcdb7a7ece8a # v1.0.3
 
     - name: Start Daemon on Windows only
       id: start-daemon
@@ -158,14 +163,14 @@ jobs:
 
     - name: Archive Results
       if: ${{ always() && steps.build.outcome == 'success' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3.1.3
       with:
         name: ${{ matrix.os }}-${{ matrix.node-version }}-results
         path: __tests__/__results__/
 
     - name: Upload Results to Codecov
       if: ${{ always() && steps.build.outcome == 'success' }}
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
       with:
         env_vars: OS,NODE
 
@@ -175,8 +180,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@8ca2b8b2ece13480cda6dacd3511b49857a23c09 # v2.5.1
+      with:
+        egress-policy: audit
+
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
       with:
         fetch-depth: 0
         persist-credentials: false
@@ -184,7 +194,7 @@ jobs:
 
     # Use Node 16 until npm@9 bundled with Node 18 becomes more stable
     - name: Use Node.js 16
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
       with:
         node-version: '16'
 
@@ -192,7 +202,7 @@ jobs:
       run: npm ci
 
     - name: Update Dependencies
-      uses: zowe-actions/octorelease/script@v1
+      uses: zowe-actions/octorelease/script@2e00d19f7c4512fd62103d21ab9f1eae441a341b # v1.0.8
       env:
         GIT_COMMITTER_NAME: ${{ secrets.ZOWE_ROBOT_USER }}
         GIT_COMMITTER_EMAIL: ${{ secrets.ZOWE_ROBOT_EMAIL }}
@@ -203,7 +213,7 @@ jobs:
     - name: Build Source
       run: npm run build
 
-    - uses: zowe-actions/octorelease@v1
+    - uses: zowe-actions/octorelease@2e00d19f7c4512fd62103d21ab9f1eae441a341b # v1.0.8
       env:
         GIT_COMMITTER_NAME: ${{ secrets.ZOWE_ROBOT_USER }}
         GIT_COMMITTER_EMAIL: ${{ secrets.ZOWE_ROBOT_EMAIL }}
