@@ -39,7 +39,7 @@ module.exports = {
                 "latest": ["zowe-v2-lts"]
             },
             npmPublish: false,
-            pruneShrinkwrap: ["@zowe/cli"],
+            // pruneShrinkwrap: ["@zowe/cli"],
             smokeTest: true,
             tarballDir: "dist"
         }],
