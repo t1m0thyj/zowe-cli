@@ -3,18 +3,18 @@ module.exports = {
         {
             name: "master",
             level: "minor",
-            dependencies: ["@zowe/perf-timing", "@zowe/imperative"]
+            dependencies: ["@zowe/perf-timing"]
         },
         {
             name: "zowe-v?-lts",
             level: "patch",
-            dependencies: ["@zowe/perf-timing", "@zowe/imperative"]
+            dependencies: ["@zowe/perf-timing"]
+        },
+        {
+            name: "next",
+            prerelease: true,
+            dependencies: { "@zowe/perf-timing": "latest" }
         }
-        // {
-        //     name: "next",
-        //     prerelease: true,
-        //     dependencies: { "@zowe/perf-timing": "latest", "@zowe/imperative": "next" }
-        // }
     ],
     plugins: [
         ["@octorelease/changelog", {
@@ -36,13 +36,15 @@ module.exports = {
         }],
         ["@octorelease/lerna", {
             aliasTags: {
-                // Note: Remove "next" tag here when the "next" branch is uncommented above
-                "latest": ["zowe-v2-lts", "next"]
+                "latest": ["zowe-v2-lts"]
             },
+            npmPublish: false,
             pruneShrinkwrap: ["@zowe/cli"],
-            smokeTest: true
+            smokeTest: true,
+            tarballDir: "dist"
         }],
         ["@octorelease/github", {
+            assets: "dist/*.tgz",
             checkPrLabels: true,
             publishRelease: true
         }],
