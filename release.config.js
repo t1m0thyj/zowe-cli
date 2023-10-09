@@ -8,7 +8,7 @@ module.exports = {
         {
             name: "add-imp-v1",
             level: "patch",
-            dependencies: ["@zowe/perf-timing"]
+            dependencies: { "@zowe/perf-timing": "latest" }
         }
         // {
         //     name: "next",
