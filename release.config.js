@@ -6,7 +6,7 @@ module.exports = {
             dependencies: ["@zowe/perf-timing"]
         },
         {
-            name: "zowe-v?-lts",
+            name: "add-imp-v1",
             level: "patch",
             dependencies: ["@zowe/perf-timing"]
         }
@@ -23,11 +23,14 @@ module.exports = {
                 // Note: Remove "next" tag here when the "next" branch is uncommented above
                 "latest": ["zowe-v2-lts", "next"]
             },
-            pruneShrinkwrap: ["@zowe/cli"],
+            npmPublish: false,
+            // pruneShrinkwrap: ["@zowe/cli"],
             smokeTest: true,
+            tarballDir: "dist",
             versionIndependent: ["@zowe/imperative"]
         }],
         ["@octorelease/github", {
+            assets: "dist/*.tgz",
             checkPrLabels: true
         }],
         "@octorelease/git"
