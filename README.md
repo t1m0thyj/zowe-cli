@@ -1,4 +1,7 @@
 # **Zowe CLI**  <!-- omit in toc -->
+
+hello :)
+
 [![codecov](https://codecov.io/gh/zowe/zowe-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/zowe/zowe-cli)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7204/badge)](https://bestpractices.coreinfrastructure.org/projects/7204)
 
