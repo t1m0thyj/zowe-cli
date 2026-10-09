@@ -5,7 +5,7 @@ cd "$(git rev-parse --show-toplevel)"
 repoRoot=$PWD
 daemonVersion=$(cd zowex && cargo metadata --no-deps --format-version 1 | jq -er .packages[0].version)
 releaseTag="native-v$daemonVersion"
-repository=zowe/zowe-cli
+repository=t1m0thyj/zowe-cli
 
 export GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}"
 
